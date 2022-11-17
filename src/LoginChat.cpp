@@ -15,8 +15,8 @@ public:
 
     void OnLogin(Player* player) override {
 
-	std::string channelName = sConfigMgr->GetStringDefault("LoginChat.name", "world");
-        QueryResult result = CharacterDatabase.PQuery("SELECT channelId FROM channels WHERE name = '%s'", channelName.c_str());
+	std::string channelName = sConfigMgr->GetOption<std::string>("LoginChat.name", "world");
+        QueryResult result = CharacterDatabase.Query("SELECT channelId FROM channels WHERE name = '{}'", channelName.c_str());
 
         if (!result) return;
 
